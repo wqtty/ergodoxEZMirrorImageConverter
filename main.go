@@ -41,11 +41,8 @@ func main() {
 				}
 				return r
 			}, txt), ",")
-			splitted = splitted[:len(splitted)-1]
-			tmp := strings.Split(splitted[0], "(")
-			splitted[0] = tmp[len(tmp)-1]
-			tmp = strings.Split(splitted[len(splitted)-1], ")")
-			splitted[len(splitted)-1] = tmp[0]
+			splitted[0] = splitted[0][strings.Index(splitted[0], "(")+1:]
+			splitted[len(splitted)-2] = splitted[len(splitted)-2][:len(splitted[len(splitted)-2])-1]
 			transform(splitted)
 			//76 keys
 			txt = strings.Join(splitted[:76], ",")
@@ -66,16 +63,13 @@ func main() {
 
 func transform(splitted []string) {
 	//process Mod-Tap Keys
-	for i := 0; i < len(splitted); {
+	for i := 0; i < len(splitted); i++ {
 		element := splitted[i]
 		if strings.Contains(element, "(") && ! strings.Contains(element, ")") {
 			temp := splitted[:i]
 			temp = append(temp, strings.Join(splitted[i:i+2], ","))
 			temp = append(temp, splitted[i+2:]...)
 			splitted = temp
-			i += 2
-		} else {
-			i++
 		}
 	}
 	//generate mirror image for ergodox pro
