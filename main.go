@@ -49,7 +49,7 @@ func main() {
 			var buffer bytes.Buffer
 			buffer.WriteString("[")
 			buffer.WriteString(strconv.Itoa(lineNo))
-			buffer.WriteString("]=KEYMAP(")
+			buffer.WriteString("]=LAYOUT_ergodox(")
 			buffer.WriteString(txt)
 			buffer.WriteString("),")
 			outFile.WriteString(buffer.String())
