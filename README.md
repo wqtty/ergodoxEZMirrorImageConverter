@@ -24,7 +24,8 @@ make git-submodule
 ```
 
 ### 操作步骤
-1. ez下载源代码 布局编译好之后 点击download source下载。
+1. 使用ez配置器配置布局。地址https://configure.ergodox-ez.com打开地址后点击Clone and modify this layout会生产可配置的页面，也可以自己搜索他人方案，基于他人方案上进行克隆修改，可以搜索常见tag诸如vim，linux，mac等等。
+1. ez下载源代码 布局配置编译好之后 点击download source下载，会下载到一个一布局名称开头的压缩包，压缩包中会包含keymap.c文件。
 文件名一般为ergodox_ez_firmware_xxxxxx.c后面6位字母。
 2. 拷贝文件到镜像工具目录
 3. 生成镜像文件。会生成keymap.c文件
@@ -61,16 +62,3 @@ Waiting for Teensy device...
 ```
 make ergodox_ez:yourlayout
 ```
-8.写了个全自动的脚本，希望大家指正
-```sh
-#!/bin/bash
-cd ~/git/ergodoxEZMirrorImageConverter
-rm -rf *.c
-proxychains wget -O $1.c https://configure.ergodox-ez.com/keyboard_layouts/$1/download_source
-go run main.go *.c
-mkdir ~/git/qmk_firmware/keyboards/ergodox_ez/keymaps/$1/ 
-cp keymap.c ~/git/qmk_firmware/keyboards/ergodox_ez/keymaps/$1/
-cd  ~/git/qmk_firmware/
-make ergodox_ez:$1:teensy
-```
-使用方法 ez网站的6位布局标识当成参数传给脚本即可。
