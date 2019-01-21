@@ -20,20 +20,20 @@ git clone https://github.com/wqtty/ergodoxEZMirrorImageConverter.git
 ```
 git clone https://github.com/qmk/qmk_firmware.git
 #编译子依赖库
+cd qmk_firmware
 make git-submodule
 ```
 
 ### 操作步骤
 1. 使用ez配置器配置布局([地址](https://configure.ergodox-ez.com))
 打开地址后点击Clone and modify this layout会生产可配置的页面，也可以自己搜索他人方案，基于他人方案上进行克隆修改，可以搜索常见tag诸如vim，linux，mac等等。
-2. ez下载源代码 布局配置编译好之后 点击download source下载，会下载到一个一布局名称开头的压缩包，压缩包中会包含keymap.c文件。
-文件名一般为ergodox_ez_firmware_xxxxxx.c后面6位字母。
-3. 拷贝文件到镜像工具目录
+2. ez下载源代码 布局配置编译好之后 点击download source下载，会下载到一个一布局名称开头的压缩包，压缩包中会包含keymap.c文件。将keymap.c重命名为yourlayout_version.c(文件名可自定义，后面命令中自行替换)
+3. 拷贝文件到镜像工具ergodoxEZMirrorImageConverter目录
 4. 生成镜像文件。会生成keymap.c文件
 ```
-go run main.go ergodox_ez_firmware_xxxxxx.c
+go run main.go yourlayout_version.c
 ```
-5. 创建布局文件夹
+5. 创建布局文件夹(布局文件夹名可自行定义，后面命令中自行替换)
 ```
 cd ~/qmk_firmware/keyboards/ergodox_ez/keymaps
 mkdir yourlayout
