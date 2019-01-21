@@ -26,7 +26,7 @@ func main() {
 		os.Exit(3)
 	}
 	fs := bufio.NewScanner(inFile)
-	regex, err := regexp.Compile(".*KEYMAP\\(.*")
+	regex, err := regexp.Compile(".*LAYOUT_ergodox\\(.*")
 	if err != nil {
 		println("请检查正则表达式语法")
 		os.Exit(3)
